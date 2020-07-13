@@ -109,16 +109,16 @@ void matlabOpenVideo(char *filename) {
   if(!pFrameRGB24 || !pFrame) {
     mexErrMsgTxt("error: Can't allocate frame!");
   }
-  buffer = (uint8_t *)av_malloc(avpicture_get_size(PIX_FMT_RGB24,
+  buffer = (uint8_t *)av_malloc(avpicture_get_size(AV_PIX_FMT_RGB24,
 						   pCodecCtx->width,
 						   pCodecCtx->height) *
 				sizeof(uint8_t));
-  avpicture_fill((AVPicture *)pFrameRGB24, buffer, PIX_FMT_RGB24,
+  avpicture_fill((AVPicture *)pFrameRGB24, buffer, AV_PIX_FMT_RGB24,
 		 pCodecCtx->width, pCodecCtx->height);
   img_convert_ctx = sws_getContext(pCodecCtx->width, pCodecCtx->height,
 				   pCodecCtx->pix_fmt,
 				   pCodecCtx->width, pCodecCtx->height,
-				   PIX_FMT_RGB24, SWS_BICUBIC,
+				   AV_PIX_FMT_RGB24, SWS_BICUBIC,
 				   NULL, NULL, NULL);
   videoFinished = 0;
   frame = 0;
